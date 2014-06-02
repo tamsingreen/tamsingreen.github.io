@@ -1,7 +1,9 @@
+//Return a BBC Redux URL string
 function createRedux1Link(path) {
-	getTXDetails(path, convertToRedux1Link);
+	return getTXDetails(path, convertToRedux1Link);
 }
 
+//TODO: when on a brand or series page, search for it and present the Redux search results page
 function getTXDetails(path, callback) {
   //call to retrieve TV schedule
   $.ajax({
@@ -14,7 +16,7 @@ function getTXDetails(path, callback) {
     	var date = response.programme.first_broadcast_date;
     	var channel = response.programme.ownership.service.id;
     	console.log("This is an episode of " + title + " at " + date + " on " + channel);   
-    	callback(date,channel);
+    	return callback(date,channel);
     } else {
     	console.log("This is not an episode");
     	return "Failed to retrieve tx";
@@ -24,7 +26,8 @@ function getTXDetails(path, callback) {
   });
 }
 
-//Convert to Redux 1 link format, eg: g.bbcredux.com/programme/bbcr4/2014-05-26/18-00-00
+/*Convert a date, time and programme title supplied from the /programmes API to Redux 1 link
+ format, eg: g.bbcredux.com/programme/bbcr4/2014-05-26/18-00-00 */
 function convertToRedux1Link(date,channel) {
 	console.log("Converting link...");
 	var url = "http://devapi.bbcredux.com/programme/" + convertChannel(channel) + "/" + convertDateAndTime(date);
