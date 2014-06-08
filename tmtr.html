@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>Take Me To Redux Bookmarklet</title>
+</head>
+    <body>
+        <h1>Take Me To Redux</h1>
+        <p>A bookmarklet to take you from a bbc.co.uk/programmes page through to the equivalent Redux page. Currently very untested.</p>
+        <p>To get started, drag the Take Me To Redux link onto your bookmarks bar and click when you're next on a /programmes episode page.</p>
+        <a href="javascript:(function(){loadJQuery(loadTMTRScript);loadTMTRScript(takeMeToRedux);function%20takeMeToRedux(){var%20url=createRedux1Link(window.location.pathname);console.log(%22URL%20is:%20%22+url);window.open(url,%22_self%22);}function%20loadJQuery(callback){if(!($=window.jQuery)){var%20jq=document.createElement('script');jq.src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';jq.type='text/javascript';jq.onload=callback;console.log(%22Loading%20JQuery%22);document.body.appendChild(jq);}else{callback;}}function%20loadTMTRScript(callback){var%20script=document.createElement('script');script.src='http://tamsingreen.github.io/redux1.js';script.type='text/javascript';script.onload=callback;console.log(%22Loading%20TMTR%22);document.body.appendChild(script);}})();">Take Me To Redux</a>
+        <h2>Some examples</h2>
+        <p>A short story by Joe Dunthorne: <a href="http://www.bbc.co.uk/programmes/b015p86j">Carl Inglestone, Life Model</a></p>
+        <p>Simon Topping's play, winner of the first BBC Writer's Prize: <a href="http://www.bbc.co.uk/programmes/b042zcqk">Rock Me Amadeus</a>
+        <p>Lynn Barber's profile of the New Journalism movement: <a href="http://www.bbc.co.uk/programmes/b03xzsp3">Archive on 4: The Interviewer Stole the Show</a></p>
+    </body>
+</html>
+
+
+
