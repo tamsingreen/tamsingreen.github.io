@@ -1,37 +1,39 @@
-//Return a BBC Redux URL string
+//TODO: when on a brand or series page, search for it and present the Redux search results page
 function createRedux1Link(path) {
-	return getTXDetails(path, convertToRedux1Link);
+  var txData = getTXDetails(path);
+  txData.done(function(response) {
+    if (response.programme.type === 'episode') {
+   	var title = response.programme.display_title.title;
+    	var date = response.programme.first_broadcast_date;
+    	var channel = response.programme.ownership.service.id;   
+    	var reduxURL = convertToRedux1Link(date,channel);
+	openReduxLink(reduxURL);
+    } else {
+    	alert("This is not a valid bbc.co.uk/programmes URL");
+    }
+  });
+  txData.fail(function() {
+	alert("Failed to retrieve tx details");
+  });
 }
 
-//TODO: when on a brand or series page, search for it and present the Redux search results page
-function getTXDetails(path, callback) {
+function openReduxLink(link) {
+	window.open(link, '_self');
+}
+
+function getTXDetails(path) {
   //call to retrieve TV schedule
-  $.ajax({
+  var reduxURL;
+  return $.ajax({
     url: path + '.json',
-    dataType: 'json',
-    beforeSend: function() {}
-  }).done(function(response) {
-    if (response.programme.type == 'episode') {
-    	var title = response.programme.display_title.title;
-    	var date = response.programme.first_broadcast_date;
-    	var channel = response.programme.ownership.service.id;
-    	console.log("This is an episode of " + title + " at " + date + " on " + channel);   
-    	return callback(date,channel);
-    } else {
-    	console.log("This is not an episode");
-    	return "Failed to retrieve tx";
-    }
-  }).fail(function() {
-  	return "Failed to retrieve tx";
+    dataType: 'json'
   });
 }
 
 /*Convert a date, time and programme title supplied from the /programmes API to Redux 1 link
  format, eg: g.bbcredux.com/programme/bbcr4/2014-05-26/18-00-00 */
 function convertToRedux1Link(date,channel) {
-	console.log("Converting link...");
-	var url = "http://devapi.bbcredux.com/programme/" + convertChannel(channel) + "/" + convertDateAndTime(date);
-	console.log(url);
+	var url = "https://g.bbcredux.com/programme/" + convertChannel(channel) + "/" + convertDateAndTime(date);
 	return url;
 }
 
@@ -42,7 +44,7 @@ function convertISODatetoUTC(date) {
 	return n;
 }
 
-//convert a programmes date & time from /programmes format eg 2012-08-22T20:45:00+01:00 
+//Convert a programme's date & time from /programmes format eg 2012-08-22T20:45:00+01:00 
 //to Redux 1 format eg 2012-08-22/19-45-00
 function convertDateAndTime(dateAndTime) {
 	var utcTime = convertISODatetoUTC(dateAndTime);
@@ -96,5 +98,4 @@ function convertChannel(channel) {
 			return "bbcparl";
 	}
 }
-
 
