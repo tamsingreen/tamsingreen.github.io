@@ -1,18 +1,114 @@
-<html>
-<head>
-    <title>Take Me To Redux Bookmarklet</title>
-</head>
-    <body>
-        <h1>Take Me To Redux</h1>
-        <p>A bookmarklet to take you from a bbc.co.uk/programmes page through to the equivalent Redux page. Currently very untested.</p>
-        <p>To get started, drag the Take Me To Redux link onto your bookmarks bar and click when you're next on a /programmes episode page.</p>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Take Me To Redux</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/theme.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Take Me To Redux</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#tmtr">TMTR</a></li>
+            <li><a href="#bookmarklet">Bookmarklet</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>iPlayer expired?</h1>
+        <p>Supply a BBC episode page URL and Take Me To Redux takes you straight to the programme in Redux so you can catch up.</p>
+        <p><a href="#about" class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
+      </div>
+
+      <div class="page-header">
+        <h1 id="tmtr" class="link-below-navbar">Enter URL:</h1>
+        <form>
+          <p><input id="url" type="text" name="url" size="100" autofocus="true"></p>
+          <br>
+          <div id="url-error">
+            <!--empty div for error messages-->
+          </div>
+          <input id="submit-button" type="button" value="Take Me To Redux" class="btn btn-lg btn-default">
+        </form>
+        <br>
+        <p>Take Me To Redux only works with bbc.co.uk/programmes episode pages. Try these examples:</p>
+        
+        <h3>Carl Inglestone, Life Model</h3>
+        <p>A short story by Joe Dunthorne: <a href="http://www.bbc.co.uk/programmes/b015p86j">http://www.bbc.co.uk/programmes/b015p86j</a></p>
+        
+        <h3>Rock Me Amadeus</h3>
+        <p>Simon Topping's play, winner of the first BBC Writer's Prize: <a href="http://www.bbc.co.uk/programmes/b042zcqk">http://www.bbc.co.uk/programmes/b042zcqk</a></p>
+
+        <h3>Archive on 4: The Interviewer Stole the Show</h3>
+        <p>Lynn Barber's profile of the New Journalism movement: <a href="http://www.bbc.co.uk/programmes/b03xzsp3">http://www.bbc.co.uk/programmes/b03xzsp3</a></p>
+ 
+      </div>
+
+      <div class="page-header">
+        <h1 id="bookmarklet" class="link-below-navbar">Bookmarklet</h1>
+        <p>Drag the Take Me To Redux link below onto your bookmarks bar and click it when you're next on a /programmes episode page.</p>
         <a href="javascript:(function(){loadJQuery(loadTMTRScript);loadTMTRScript(takeMeToRedux);function%20takeMeToRedux(){var%20url=createRedux1Link(window.location.pathname);console.log(%22URL%20is:%20%22+url);window.open(url,%22_self%22);}function%20loadJQuery(callback){if(!($=window.jQuery)){var%20jq=document.createElement('script');jq.src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';jq.type='text/javascript';jq.onload=callback;console.log(%22Loading%20JQuery%22);document.body.appendChild(jq);}else{callback;}}function%20loadTMTRScript(callback){var%20script=document.createElement('script');script.src='http://tamsingreen.github.io/redux1.js';script.type='text/javascript';script.onload=callback;console.log(%22Loading%20TMTR%22);document.body.appendChild(script);}})();">Take Me To Redux</a>
-        <h2>Some examples</h2>
-        <p>A short story by Joe Dunthorne: <a href="http://www.bbc.co.uk/programmes/b015p86j">Carl Inglestone, Life Model</a></p>
-        <p>Simon Topping's play, winner of the first BBC Writer's Prize: <a href="http://www.bbc.co.uk/programmes/b042zcqk">Rock Me Amadeus</a>
-        <p>Lynn Barber's profile of the New Journalism movement: <a href="http://www.bbc.co.uk/programmes/b03xzsp3">Archive on 4: The Interviewer Stole the Show</a></p>
-    </body>
+      </div>
+
+      <div class="page-header">
+        <h1 id="about" class="link-below-navbar">About</h1>
+        <p>Take Me To Redux is by Tamsin Green. The code is hosted on my <a href='https://github.com/tamsingreen/redux-bookmarklet'>Github</a> if you want to take a look.</p>
+      </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="src/bootstrap.min.js"></script>
+    <!--script src="assets/js/docs.min.js"></script-->
+    <script src='src/redux.js'></script>
+    <script>
+    $( document ).ready(function() {
+      $('#submit-button').click(TMTR.onClick);
+    });
+    </script>
+  </body>
 </html>
-
-
-
