@@ -1,0 +1,66 @@
+<!html>
+    <head>
+        <title>10 Pin Bowling</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+        <!-- Customised style sheet -->
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        <div class="container"> 
+            <div class="jumbotron">
+                <h1>Let's Play 10 Pin Bowling!</h1>
+                <div id="player-input">
+                    <p>Enter up to six players:</p>
+                    <p id="input-error"></p>
+                    <p><input type="text"></input></p>
+                    <p><input type="text"></input></p>
+                    <p><input type="text"></input></p>
+                    <p><input type="text"></input></p>
+                    <p><input type="text"></input></p>
+                    <p><input type="text"></input></p>
+                    <p>
+                        <button type="button" class="btn btn-lg btn-info" id="start-play">Let's play!</button>
+                    </p>
+                </div>
+                <div id="scoreboard">
+                    <div class="alert alert-danger" role="alert" id="error-message"></div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr id="table-header-player">
+                                <th></th>
+                            </tr>
+                            <tr id="table-header-scores">
+                                <th>Frame</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <p>
+                        <div class="alert alert-success" role="alert" id="winner-message">
+                            <strong>Well done!</strong> <span id="winner-name"></span> is the winner!
+                        </div>
+                        <button type="button" class="btn btn-lg btn-warning" id="enter-score">Enter score</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- load jQuery -->
+        <script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="bowling.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                Bowling.init();
+            });
+        </script>
+    </body>
+</html>
